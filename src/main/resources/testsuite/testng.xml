@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Wallet"  verbose="1" >
+  
+  <listeners>
+        <listener class-name="com.wallet.hub.java.test.TestListener"/>
+    </listeners>
+  
+  
+  <test name="Tests">
+    <classes>
+  <class name="com.wallet.hub.java.test.WalletPostTest">
+  <methods>
+  <include name="FacebookWallPostAssertionTest"/>
+  <include name="WalletTestStarHover"/>
+  </methods>
+  </class>
+    </classes>
+  </test> <!-- Default test -->
+</suite> <!-- Default suite --> 
