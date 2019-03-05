@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Wallet"  verbose="1" >
+<suite name="Trello"  verbose="1" >
   
-  <listeners>
+  <!--listeners>
         <listener class-name="com.wallet.hub.java.test.TestListener"/>
-    </listeners>
+    </listeners-->
   
   
-  <test name="Tests">
+  <test name="TrelloTest">
     <classes>
-  <class name="com.wallet.hub.java.test.WalletPostTest">
+  <class name="com.wallet.hub.java.test.TrelloTest">
   <methods>
-  <include name="FacebookWallPostAssertionTest"/>
-  <include name="WalletTestStarHover"/>
+  <include name="TrelloFirstTest"/>
   </methods>
   </class>
     </classes>

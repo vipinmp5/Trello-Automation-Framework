@@ -1,11 +1,10 @@
 package com.wallet.hub.java.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.testng.Assert;
 
 import com.wallet.hub.java.util.Log;
+import com.wallet.hub.java.util.ObjectRepoUtility;
 
 public class TrelloLoginPage extends BasePage
 {
@@ -15,21 +14,12 @@ public class TrelloLoginPage extends BasePage
 		super(driver);
 	}
 	
-	 
-	  @FindBy(how = How.CSS, using = "input#user")
-	    public WebElement userName;
-	  
-	  @FindBy(how = How.CSS, using = "input#user")
-	    public WebElement password;
-	  
-	  @FindBy(how = How.CSS, using = "input#login")
-	    public WebElement loginButton;
 	  
 	  
-	  public TrelloLoginPage verifyLoginPage(String ProfileName)
+	  public TrelloLoginPage verifyLoginPage()
 	  {
 		  try
-		  {
+		  {	 
 			  Assert.assertEquals(driver.getTitle().contains("Log in to Trello"),true);
 			  return GetInstance(TrelloLoginPage.class);
 			  
@@ -44,15 +34,28 @@ public class TrelloLoginPage extends BasePage
 		   
 	  }
 	  
+	  public void enterUsername(String email){
+	     objrepo.enterTextJS("input#user", email);
+	  }
 	  
-	  public TrelloHomePage LoginToApplication(String emailVal, String passwordVal)
+	  public void enterPassword(String passwordText){
+		  objrepo.enterTextJS("input#password", passwordText);
+		  }
+	  
+	  public void clickLoginButton(){
+		     WebElement loginButton=objrepo.ConstructElementByCss("input#login");
+		     loginButton.click();
+		  }
+	  
+	  public TrelloHomePage LoginToApplication(String email, String passwordText)
 	  {
 		  try
 		  {
-			  writeText(userName, emailVal);
-			  writeText(password,passwordVal);
-			  click(loginButton);
-			  Log.info("Login To Trello using username: "+emailVal+" and password: "+passwordVal);
+			  
+			  enterUsername(email);
+			  enterPassword(passwordText);
+			  clickLoginButton();
+			  Log.info("Login To Trello using username: "+email+" and password: "+passwordText);
 			  return GetInstance(TrelloHomePage.class);
 			    
 		  }
@@ -65,6 +68,5 @@ public class TrelloLoginPage extends BasePage
 	  }
 	  
 }
-
 
 

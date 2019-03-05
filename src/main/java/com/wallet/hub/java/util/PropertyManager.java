@@ -9,15 +9,9 @@ public class PropertyManager {
 	private static PropertyManager instance;
 	private static String propertyFilePath = System.getProperty("user.dir")
 			+ "\\src\\main\\resources\\configuration.properties";
-	private static String fuserName;
-	private static String fpassword;
-	private static String PostText;
-	private static String DisplayName;
-	private static String BASEURL;
-	private static String WUserName;
-	private static String WEmailDomain;
-	private static String WPassword;
-	private static String PolicyName;
+	private static String BaseUrl;
+	private static String usernameVal;
+	private static String passwordVal;
 
 	// Create a Singleton instance. We need only one instance of Property
 	// Manager.
@@ -42,51 +36,21 @@ public class PropertyManager {
 		}
 
 		// Get properties from configuration.properties
-		fuserName = prop.getProperty("fuserName");
-		fpassword = prop.getProperty("fpassword");
-		PostText = prop.getProperty("PostText");
-		DisplayName = prop.getProperty("DisplayName");
-		BASEURL = prop.getProperty("BASEURL");
-		WUserName = prop.getProperty("WUserName");
-		WPassword = prop.getProperty("WPassword");
-		WEmailDomain = prop.getProperty("WEmailDomain");
-		PolicyName = prop.getProperty("PolicyName");
+		BaseUrl = prop.getProperty("BASEURL");
+		usernameVal = prop.getProperty("TrelloUserName");
+		passwordVal = prop.getProperty("TrelloPassword");
 	}
 
 	public String getBaseUrl() {
-		return BASEURL;
+		return BaseUrl;
 	}
 
-	public String getFacebookUserName() {
-		return fuserName;
+	public String getTrelloUserName() {
+		return usernameVal;
 	}
 
-	public String getFacebookPassword() {
-		return fpassword;
-	}
-
-	public String getPostData() {
-		return PostText;
-	}
-	
-	public String getFacebookName() {
-		return DisplayName;
-	}
-
-	public String getWalletUsername() {
-		return WUserName;
-	}
-
-	public String getWalletPassword() {
-		return WPassword;
-	}
-
-	public String getWalletEmailDomain() {
-		return WEmailDomain;
-	}
-
-	public String getPolicyName() {
-		return PolicyName;
+	public String getTrelloPassword() {
+		return passwordVal;
 	}
 
 }

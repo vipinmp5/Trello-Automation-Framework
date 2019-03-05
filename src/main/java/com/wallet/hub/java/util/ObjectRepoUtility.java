@@ -4,24 +4,21 @@ import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ObjectRepoUtility {
 	WebDriver driver;
     private boolean acceptNextAlert = true;
-    public WebDriverWait wait;
     public ObjectRepoUtility(WebDriver driver)
     {
         if(this.driver==null)
         {
             this.driver = driver;
-            wait = new WebDriverWait(driver, 30);
         }
         
     }
@@ -78,6 +75,11 @@ public class ObjectRepoUtility {
          Select objSelect = new Select(element);
         return objSelect;
     }
+    
+    public void enterTextJS(String selector, String input){
+    	String Query="document.querySelector('"+selector+"').value='"+input+"'";
+    	((JavascriptExecutor)driver).executeScript(Query);
+    }
 
 
     public WebElement autocompleteTextBox(String inputTxt, String atrrValue, String autoQuery)
@@ -86,12 +88,12 @@ public class ObjectRepoUtility {
         {
            
             WebElement inputText = ConstructElementByCss("#" + atrrValue);
-            wait.until(ExpectedConditions.elementToBeClickable(inputText));
+            //wait.until(ExpectedConditions.elementToBeClickable(inputText));
             inputText.click();
             inputText.sendKeys(inputTxt);
             Thread.sleep(5000);
             WebElement autotext = ConstructElementByxpath(autoQuery);
-            wait.until(ExpectedConditions.elementToBeClickable(autotext));
+            //wait.until(ExpectedConditions.elementToBeClickable(autotext));
             return autotext;
 
         }

@@ -1,6 +1,5 @@
 package com.wallet.hub.java.pages;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,7 +24,7 @@ public class ReviewSubmissionConfirmPage extends BasePage{
 	{
 		String reviewUrl=PostedLink.getAttribute("href");
 		
-		String reviewId=StringUtils.substringAfterLast(reviewUrl, "#");
+		String reviewId="";//StringUtils.substringAfterLast(reviewUrl, "#");
 		
 		return reviewId;
 	}

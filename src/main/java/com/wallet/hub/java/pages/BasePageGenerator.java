@@ -8,20 +8,12 @@ public class BasePageGenerator {
 	public WebDriver driver;
 	public ObjectRepoUtility objrepo;
 	
-	public WebDriver getDriver(){  
-		return BrowserFactory.getDriver();
-     }
 
-    private  void setDriver(WebDriver driverVal){
-    	if (driver == null)
-        {
-            driver = BrowserFactory.getDriver();
-        }
-     }
 
     //Constructor
     public BasePageGenerator(WebDriver driver){
-    	setDriver(driver);
+        this.driver=driver;
+        objrepo=new ObjectRepoUtility(driver);
     }
  
     //JAVA Generics to Create and return a New Page
