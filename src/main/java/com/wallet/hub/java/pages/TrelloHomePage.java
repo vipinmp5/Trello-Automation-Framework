@@ -1,53 +1,68 @@
-
 package com.wallet.hub.java.pages;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-import org.testng.Assert;
 
 import com.wallet.hub.java.util.Log;
+import com.wallet.hub.java.util.ObjectRepoUtility;
 
-public class TrelloHomePage extends BasePage {
-	
+public class TrelloHomePage {
 
-	
-	public TrelloHomePage(WebDriver driver)
-	{
-		super(driver);
+	ObjectRepoUtility objRepo;
+
+	public TrelloHomePage(WebDriver driver) {
+		objRepo = new ObjectRepoUtility(driver);
+	}
+
+	public void clickOnBoard() {
+		objRepo.ConstructElementByCss("a.header-boards").click();
+	}
+
+	public void clickOnCreatNewLink() {
+		objRepo.constructXpathTextElement("Create new board").click();
 	}
 	
-	@FindBy(how = How.CSS, using = ".member-initials[title^=Vipin]")
-    public WebElement ProfileName;
+	public void selectTheme(String attributeValue) {
+		objRepo.ConstructElementByCssTagAttributeValue("button", "title", attributeValue).click();
+	}
 	
-	@FindBy(how = How.XPATH, using = "//div[@class='wh-rating-choices-holder']/a[4]")
-    public WebElement FourthStar;
+	public void addBoardTitle(String boardTitle) {
+		objRepo.enterTextPlaceHolderTextbox("div.board-tile input", boardTitle);
+	}
 	
-	@FindBy(how = How.XPATH, using = "//div[@class='wh-rating-choices-holder']/a[5]")
-    public WebElement FifthStar;
+	public void clickCreateBoardButton() {
+		objRepo.constructXpathTagFollowedChildElement("button", "Create Board").click();
+	}
 	
+	public String createdBoardHeaderDisplayed() {
+		return objRepo.ConstructElementByCss("span.js-board-editing-target").getText();
+	}
 	
-	 public TrelloHomePage verifyHomePage(String AvatarText)
-	  {
-		  try
-		  {
-			  Assert.assertEquals(ProfileName.getText(),AvatarText);
-			  return GetInstance(TrelloHomePage.class);
-			  
-		  }
-		  catch(Exception e)
-		  {
-			  Log.fatal("ProfileName Displayed is "+ProfileName.getText()+" Exception "+ e.getMessage());
-			  
-			   return null;
-		  }
-		  
-		   
-	  }
+	public void searchboard(String boardTitle) {
+		objRepo.enterTextPlaceHolderTextbox("input[name*=search]",boardTitle);
+	}
 	
-	
-		
+	public void clickSearchedboard(String boardTitle) {
+		objRepo.constructXpathTagFollowedChildElement("a",boardTitle).click();
+	}
+
+	public void CreateNewBoard(String theme, String boardTitle) {
+		try {
+
+			clickOnBoard();
+			clickOnCreatNewLink();
+			Thread.sleep(3000);
+			selectTheme(theme);
+			addBoardTitle(boardTitle);
+			clickCreateBoardButton();
+			
+			Log.info("Created new trello board using " + theme
+					+ " theme and with title " + boardTitle);
+
+		} catch (Exception e) {
+			Log.info("From Trello Login Page Thrown Exception: "
+					+ e.getMessage());
+		}
+
+	}
 
 }

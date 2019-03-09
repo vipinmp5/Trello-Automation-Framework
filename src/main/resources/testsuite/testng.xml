@@ -11,7 +11,8 @@
     <classes>
   <class name="com.wallet.hub.java.test.TrelloTest">
   <methods>
-  <include name="TrelloFirstTest"/>
+  <include name="TrelloCreateBoardTest"/>
+  <include name="TrelloCardCreateAndVerifyEnteredDetailsTest"/>
   </methods>
   </class>
     </classes>

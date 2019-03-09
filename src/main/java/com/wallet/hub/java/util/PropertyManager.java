@@ -12,6 +12,7 @@ public class PropertyManager {
 	private static String BaseUrl;
 	private static String usernameVal;
 	private static String passwordVal;
+	private static String attachmentName;
 
 	// Create a Singleton instance. We need only one instance of Property
 	// Manager.
@@ -39,6 +40,7 @@ public class PropertyManager {
 		BaseUrl = prop.getProperty("BASEURL");
 		usernameVal = prop.getProperty("TrelloUserName");
 		passwordVal = prop.getProperty("TrelloPassword");
+		attachmentName= prop.getProperty("ATTACHMENTNAME");
 	}
 
 	public String getBaseUrl() {
@@ -51,6 +53,10 @@ public class PropertyManager {
 
 	public String getTrelloPassword() {
 		return passwordVal;
+	}
+	
+	public String getAttachmentName() {
+		return attachmentName;
 	}
 
 }

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Trello]">
+  <test thread-count="5" name="TrelloTest(failed)">
     <classes>
-      <class name="com.wallet.hub.java.test.FacebookPostTest">
+      <class name="com.wallet.hub.java.test.TrelloTest">
         <methods>
-          <include name="tearDown"/>
-          <include name="WalletTestStarHover"/>
-          <include name="initialize"/>
+          <include name="TrelloCardCreateAndVerifyEnteredDetailsTest"/>
+          <include name="teardown"/>
+          <include name="setup"/>
+          <include name="TrelloCreateBoardTest"/>
         </methods>
-      </class> <!-- com.wallet.hub.java.test.FacebookPostTest -->
+      </class> <!-- com.wallet.hub.java.test.TrelloTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- TrelloTest(failed) -->
+</suite> <!-- Failed suite [Trello] -->
